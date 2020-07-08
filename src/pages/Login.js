@@ -1,10 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-
-import Action from "./assets/action";
-import Lock from "./assets/Lock";
-import User from "./assets/User";
-import Set from "./assets/set";
+import { useNavigation } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Action from "../../assets/action";
+import Lock from "../../assets/Lock";
+import User from "../../assets/User";
+import Set from "../../assets/set";
 import {
   StyleSheet,
   SafeAreaView,
@@ -18,11 +20,9 @@ import {
 } from "react-native";
 
 export default function App({ navigation }) {
+  const navigation = useNavigation();
   function navigateToConfig() {
     navigation.navigate("Config");
-  }
-  function navigateToHome() {
-    navigation.navigate("Home");
   }
 
   const [logo] = useState(new Animated.ValueXY({ x: 130, y: 155 }));
@@ -87,10 +87,7 @@ export default function App({ navigation }) {
           <Text style={styles.submitText}>Acessar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.Configurações}
-          onPress={navigateToConfig}
-        >
+        <TouchableOpacity style={styles.Configurações} onPress={useNavigation}>
           <Set style={styles.engrenagem} />
           <Text style={styles.ConfigText}>Configurações</Text>
         </TouchableOpacity>
