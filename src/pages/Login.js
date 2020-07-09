@@ -20,9 +20,11 @@ import {
 } from "react-native";
 
 export default function App({ navigation }) {
-  const navigation = useNavigation();
   function navigateToConfig() {
     navigation.navigate("Config");
+  }
+  function navigateToHome() {
+    navigation.navigate("Home");
   }
 
   const [logo] = useState(new Animated.ValueXY({ x: 130, y: 155 }));
@@ -82,12 +84,15 @@ export default function App({ navigation }) {
           secureTextEntry={true}
         />
 
-        <TouchableOpacity style={styles.btnSubmit}>
+        <TouchableOpacity style={styles.btnSubmit} onPress={navigateToHome}>
           <User style={styles.user} />
           <Text style={styles.submitText}>Acessar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.Configurações} onPress={useNavigation}>
+        <TouchableOpacity
+          style={styles.Configurações}
+          onPress={navigateToConfig}
+        >
           <Set style={styles.engrenagem} />
           <Text style={styles.ConfigText}>Configurações</Text>
         </TouchableOpacity>
@@ -102,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#EFEFEF",
+    backgroundColor: "#E8E8E8",
   },
   in: {
     fontFamily: "Roboto",
